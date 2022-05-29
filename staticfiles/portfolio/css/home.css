@@ -1,0 +1,31 @@
+main {
+    height: 200vh;
+    text-align: center;
+    font-size: 3em;
+}
+
+article.primeiro {
+  /* definindo altura e cor */
+    margin-top: 700px;
+  height: 30vh;
+  background: ghostwhite;
+  padding: 0 4vw;
+  text-align: center;
+  font-size: 2rem;
+}
+
+#space{
+  background: rgb(238, 248, 248);
+  margin-top: 200px;
+}
+
+
+article.segundo {
+  /* como tem menu e rodapé visíveis (10vh cada), define-se como altura 80vh. */
+  height: 80vh;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  align-items: start;
+}
