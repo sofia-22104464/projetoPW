@@ -1,0 +1,48 @@
+main {
+  background-color: transparent;
+  padding: 0;
+}
+
+footer {
+  position: absolute;
+  bottom: -130%;
+}
+
+main {
+  /* como o menu ocupa 10vh, este tem 90vh para o vermo inteiro. */
+  height: 94vh;
+  background-image: url('../images/heroimage.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+main > h2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
+  color: rgba(255, 255, 255, 0.87);
+  padding: 40vh;
+}
+
+article.primeiro {
+  /* definindo altura e cor */
+  height: 50vh;
+  background: rgba(30, 14, 2, 0.58);
+  padding: 0 4vw;
+  text-align: center;
+  font-size: 2rem;
+}
+
+article.segundo {
+  /* como tem menu e rodapé visíveis (10vh cada), define-se como altura 80vh. */
+  height: 80vh;
+  background-image: url('../images/heroimage.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  align-items: start;
+}

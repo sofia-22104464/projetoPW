@@ -1,0 +1,35 @@
+<!-- educacao.html -->
+
+{% extends 'portfolio/layout.html' %}
+
+{% block main %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'portfolio/css/educacao.css' %}">
+
+<h1>Educação</h1>
+
+<br>
+
+{% for escola in escolas %}
+    <div onload="load(this)" class="container">
+        <div style="background-image: url({{ escola.imagem.url }}); width: 500px">
+            <h2>{{escola.nome}}</h2>
+            <p><b>Local: </b>{{escola.local}}</p>
+            <p><b>Curso Frequentado: </b>{{escola.cursoFrequentado}}</p>
+            <p><b>Periodo: </b>{{escola.periodoNaInstituicao}}</p>
+        </div>
+    </div>
+{% endfor %}
+
+{% if request.user.is_authenticated %}
+<div class=botao>
+    <button class="button button2"><a href="{% url 'portfolio:nova_escola' %}">Adicionar Escola</a>
+    </button>
+</div>
+{% endif %}
+
+<div class="flexbox">
+
+</div>
+{% endblock %}

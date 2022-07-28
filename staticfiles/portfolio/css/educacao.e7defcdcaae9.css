@@ -1,0 +1,43 @@
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.florinda img {
+    position: absolute;
+    top: -60%;
+    left: 27%;
+    transform: translate(-170%, 426%);
+}
+
+.alapraia img {
+    position: absolute;
+    top: 10%;
+    left: 57%;
+    transform: translate(-170%, 426%);
+}
+
+.saojoao img {
+    position: absolute;
+    top: -50%;
+    left: 82%;
+    transform: translate(-170%, 426%);
+}
+
+.ulht img {
+    position: absolute;
+    top: -65%;
+    left: 105%;
+    transform: translate(-170%, 426%);
+}

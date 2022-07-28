@@ -1,0 +1,47 @@
+<!-- programacaowebtecnologias.html -->
+
+{% extends 'portfolio/layout.html' %}
+
+{% block main %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'portfolio/css/programacaowebtecnologias.css' %}">
+
+<h1>Tecnologias Existentes</h1>
+<br>
+{% for tecnologia in tecnologias %}
+<div class="container">
+    <div>
+        <h2>{{tecnologia.nomeExtenso}} - {{tecnologia.sigla}}</h2>
+        <h3>{{tecnologia.tipo}}</h3>
+
+        <br>
+        <p>{{tecnologia.descricao}}</p>
+        <br>
+        <p><b>Criador(es): </b>{{tecnologia.criador}}</p>
+        <p><b>Ano de Criação: </b>{{tecnologia.anoDeCriacao}}</p>
+
+        {% if tecnologia.linkSiteOficial != None %}
+        <p><b>Link do Site Oficial: </b><a href="{{tecnologia.linkSiteOficial}}">{{tecnologia.linkSiteOficial}}</a></p>
+        {% endif %}
+
+        <br>
+        {% if tecnologia.imagem.url != None %}
+        <img src="{{tecnologia.imagem.url}}" width="75" height="75">
+        {% endif %}
+        <br>
+        <br>
+        {% if request.user.is_authenticated %}
+        <button class="button button1"><a href="{% url 'portfolio:edita_tecnologia' tecnologia.id %}">Editar</a>
+        </button>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+{% if request.user.is_authenticated %}
+<div class=botao>
+    <button class="button button2"><a href="{% url 'portfolio:nova_tecnologia' %}">Adicionar Tecnologia</a>
+    </button>
+</div>
+{% endif %}
+{% endblock %}

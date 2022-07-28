@@ -1,0 +1,36 @@
+<!-- laboratorios.html -->
+
+{% extends 'portfolio/layout.html' %}
+
+{% block main %}
+{% load static %}
+    {% if mylist %}
+        <link rel="stylesheet" href="{% static 'portfolio/css/laboratorios.css' %}">
+    {% else %}
+        <link rel="stylesheet" href="{% static 'portfolio/css/projetos1.css' %}">
+    {% endif %}
+
+<h1>Laboratórios</h1>
+<br>
+{% for laboratorio in laboratorios %}
+<div class="container">
+    <div>
+        <h3><a href= "{{laboratorio.link}}"> {{laboratorio.titulo}} </a></h3>
+        <br>
+        <p>{{laboratorio.descricao}}</p>
+        <br>
+        {% if request.user.is_authenticated %}
+        <button class="button button1"><a href="{% url 'portfolio:edita_laboratorio' laboratorio.id %}">Editar</a></button>
+        {% endif %}
+    </div>
+</div>
+{% empty %}
+    <p id="centro">Em progresso...</p>
+{% endfor %}
+{% if request.user.is_authenticated %}
+<div class=botao>
+    <button class="button button2"><a href="{% url 'portfolio:novo_laboratorio' %}">Adicionar Laboratorio</a>
+    </button>
+</div>
+{% endif %}
+{% endblock %}

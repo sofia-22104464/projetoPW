@@ -1,0 +1,30 @@
+<!-- login.html -->
+
+{% extends 'portfolio/layout.html' %}
+
+{% block main %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'portfolio/css/login.css' %}">
+
+<div class="container">
+    <img src="{% static 'portfolio/images/heroimage.jpg' %}">
+</div>
+
+<div class="credentials">
+    <form action="" method="post">
+        <h1>Login</h1>
+        <br>
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="username" class="cont">
+        <br>
+        <input type="password" name="password" placeholder="password" class="cont">
+        <br>
+        <input type="submit" value="Login" class="button">
+        {% if message %}
+        <p> {{ message }} </p>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}

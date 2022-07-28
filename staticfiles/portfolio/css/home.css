@@ -1,0 +1,30 @@
+.container img {
+  z-index: -1;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
+}
+
+main {
+  background-color: transparent;
+}
+
+footer {
+  color: white;
+}
+
+.flexbox {
+  display: flex;
+  width: 100%;
+  height: 90vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
+
+.flexbox h2{
+  font-size: 3em;
+}

@@ -1,0 +1,61 @@
+<!-- licenciatura.html -->
+
+{% extends 'portfolio/layout.html' %}
+
+{% block main %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'portfolio/css/licenciatura.css' %}">
+
+<h1>Cadeiras</h1>
+
+<br>
+
+{% for cadeira in cadeiras %}
+<div class="container">
+    <div>
+            <h3>{{cadeira.nome}} ({{cadeira.ano}}ºAno {{cadeira.semestre}}ºSemestre {{cadeira.anoLetivoFrequentado}})</h3>
+            <br>
+            <p>{{cadeira.descricao}}</p>
+            <br>
+            <p><b>ECTS:</b> {{cadeira.ects}}</p>
+
+            {% for professorTeorica in cadeira.professorTeoricas %}
+                <p><b>Docente Teórica:</b> {{professorTeorica}}</p>
+            {% endfor %}
+
+            {% for professorPratica in cadeira.professorPraticas %}
+                <p><b>Docente Prática:</b> {{professorPratica}}</p>
+            {% endfor %}
+
+            {% if cadeira.linguagemUtilizada != None %}
+                {% for linguagensUtilizadas in cadeira.linguagemUtilizada %}
+                    <p><b>Linguagem Lecionada:</b> {{linguagensUtilizadas}}</p>
+                {% endfor %}
+            {% endif %}
+
+            {% if cadeira.projetoRealizado != None %}
+                {% for projeto in cadeira.projetoRealizado %}
+                    <p><b>Projeto:</b> {{projeto}}</p>
+                {% endfor %}
+            {% endif %}
+
+            <p><b>Rating:</b> {{cadeira.rating}} &#127775;</p>
+            <br>
+            <p><a href="{{cadeira.urlCadeira}}">
+                <button class="button button1">Saber mais</button>
+            </a></p>
+            <br>
+            {% if request.user.is_authenticated %}
+                <button class="button button1"><a href="{% url 'portfolio:licenciatura_edita_cadeira' cadeira.id %}">Editar</a></button>
+            {% endif %}
+    </div>
+</div>
+{% endfor %}
+{% if request.user.is_authenticated %}
+<div class=botao>
+    <button class="button button2"><a href="{% url 'portfolio:licenciatura_nova_cadeira' %}">Adicionar cadeira</a>
+    </button>
+</div>
+{% endif %}
+{% endblock %}

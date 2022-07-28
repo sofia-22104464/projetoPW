@@ -1,0 +1,58 @@
+<!-- quizz.html -->
+
+{% extends 'portfolio/layout.html' %}
+
+{% block main %}
+    {% load static %}
+<link rel="stylesheet" href="{% static 'portfolio/css/quizz.css' %}">
+    <div>
+    <h1>Quizz</h1>
+<form method="POST" enctype="multipart/form-data" autocomplete="on">
+    {% csrf_token %}
+    <br>
+    <p>Nome: <input type="text" name="nome" pattern=".{3,}" maxlength="15" autofocus required></p>
+
+    <br>
+
+    <h3>Perguntas</h3>
+    <br>
+    <p><b>Escolhe o elemento HTML correto para o maior título:</b></p>
+    <p><input type="radio" id="elem" value="head"> &lt;head&gt; </p>
+    <p><input type="radio" id="elem" value="h6"> &lt;h6&gt; </p>
+    <p><input type="radio" id="elem" value="h1"> &lt;h1&gt; </p>
+    <p><input type="radio" id="elem" value="heading"> &lt;heading&gt;</p>
+
+    <br>
+
+    <p><b>O que é usado para fazer um comentário em HTML?</b></p>
+    <p><input type="radio" name="opcao" value="first"> &lt;!-- --&gt; </p>
+    <p><input type="radio" name="opcao" value="second"> //</p>
+    <p><input type="radio" name="opcao" value="third"> /*</p>
+    <p><input type="radio" name="opcao" value="fourth"> #</p>
+
+
+    <br>
+
+    <p><b>Em que data foi Django lançado?</b></p>
+    <p>Data de Criação/Lançamento do Django: <input type="date" id="date" name="datecriacao" min="2002-01-01"
+                                                    max="2007-01-01"></p>
+    <br>
+
+    <label for="answer"><b>O que significa CSS?</b></label>
+    <input type="text" id="answer" name="answer">
+    <br>
+    <br>
+    <br>
+
+    <label for="review">Comentários/Sugestões:</label>
+    <textarea id="review" name="review" rows="4" cols="50"></textarea>
+    <br>
+    <br>
+    <input type="submit" value="Submeter">
+    <br>
+    <br>
+    {% load static %}
+    <img src="{% static '/portfolio/images/graph.png' %}">
+</form>
+    </div>
+{% endblock %}

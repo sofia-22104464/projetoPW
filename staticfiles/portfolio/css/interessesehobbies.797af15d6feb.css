@@ -1,0 +1,25 @@
+.container {
+}
+
+.container div {
+  float: left;
+  width: 315px;   height: 315px;
+  padding: 25px;  margin: 10px;
+  background-color: white;
+  border-radius: 10px;                 /* arredonda os cantos */
+  box-shadow: 5px 5px 15px grey;
+}
+
+.after-box {
+  clear: left;
+  background-color: black;
+}
+
+.container a {
+  color: inherit;
+  text-decoration: none !important;
+}
+
+.container a:hover {
+  color: blue;
+}

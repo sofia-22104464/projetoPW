@@ -1,0 +1,60 @@
+<!-- projetos.html -->
+
+{% extends 'portfolio/layout.html' %}
+
+{% block main %}
+
+{% load static %}
+    {% if mylist %}
+        <link rel="stylesheet" href="{% static 'portfolio/css/projetos.css' %}">
+    {% else %}
+        <link rel="stylesheet" href="{% static 'portfolio/css/projetos1.css' %}">
+    {% endif %}
+
+<h1>Projetos</h1>
+<br>
+{% for projeto in projetos %}
+<div class="container">
+    <div>
+        <h3>{{projeto.nome}}</h3>
+        <br>
+        <p>{{projeto.descricao}}</p>
+        <br>
+        <p><b>Ano de Realização: </b>{{projeto.anoLetivoEmQueFoiRealizado}}</p>
+
+        {% for participantes in projeto.autores %}
+        <p><b>Participantes: </b>{{participantes}}</p>
+        {% endfor %}
+
+        {% if projeto.linkGitHub != None %}
+        <p><b>Link do GitHub: </b><a href="{{projeto.linkGitHub}}">{{projeto.linkGitHub}}</a></p>
+        {% endif %}
+
+        {% if projeto.linkVideoYoutube != None %}
+        <p><b>Vídeo de Demonstração: </b><a href="{{projeto.linkVideoYoutube}}">{{projeto.linkVideoYoutube}}</a></p>
+        {% endif %}
+
+        {% for linguagensUsadas in projeto.linguagemUsada %}
+        <p><b>Linguagem Utilizada:</b> {{linguagensUsadas}}</p>
+        {% endfor %}
+        <br>
+        {% if projeto.imagem.url != None %}
+        <img src="{{projeto.imagem.url}}" width="250" height="175">
+        {% endif %}
+        <br>
+        {% if request.user.is_authenticated %}
+        <button class="button button1"><a href="{% url 'portfolio:edita_projeto' projeto.id %}">Editar</a>
+        </button>
+        {% endif %}
+    </div>
+</div>
+{% empty %}
+    <p id="centro">Em Progresso...</p>
+{% endfor %}
+{% if request.user.is_authenticated %}
+<div class=botao>
+    <button class="button button2"><a href="{% url 'portfolio:novo_projeto' %}">Adicionar projeto</a>
+    </button>
+</div>
+{% endif %}
+{% endblock %}

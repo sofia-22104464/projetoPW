@@ -1,0 +1,35 @@
+<!-- programacaowebtecnologias.html -->
+
+{% extends 'portfolio/layout.html' %}
+
+{% block main %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'portfolio/css/noticias.css' %}">
+
+<h1>Notícias</h1>
+<br>
+{% for noticia in noticias %}
+<div class="container">
+    <a class="caixa" href="{{noticia.linkNoticia}}">
+        <h3>{{noticia.titulo}}</h3>
+        <br>
+        <p>{{noticia.texto}}</p>
+        <br>
+        <div class="imagem">
+            {% if noticia.imagem.url != None %}
+            <a href="{{noticia.linkNoticia}}"><img src="{{noticia.imagem.url}}" width="1600" height="200"></a>
+            {% endif %}
+        </div>
+        {% if request.user.is_authenticated %}
+        <button class="button button1"><a href="{% url 'portfolio:edita_noticia' noticia.id %}">Editar</a></button>
+        {% endif %}
+    </a>
+</div>
+{% endfor %}
+{% if request.user.is_authenticated %}
+<div class=botao>
+    <button class="button button2"><a href="{% url 'portfolio:nova_noticia' %}">Adicionar Noticia</a>
+    </button>
+</div>
+{% endif %}
+{% endblock %}

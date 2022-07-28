@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'portfolio/css/layout.css' %}">
+
+    <meta charset="UTF-8">
+    <title>Portfolio</title>
+</head>
+
+<script>
+      document.addEventListener('DOMContentLoaded', function() {
+        fetch('https://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1110600.json')// envia GET request ao URL
+        .then(response => response.json()) // Põe a resposta no formato json
+        .then(data => {
+            document.getElementById("temp").innerHTML ="Temperatura Lisboa " + data.data[0].tMin + "º - " + data.data[0].tMax + "º";
+            console.log(data);
+        }); // põe os dados na consola
+      });
+
+      function startTime() {
+         var today = new Date();
+         var day = today.getDate();
+         var month = today.getMonth() + 1;
+         var year = today.getFullYear();
+         var hours = today.getHours();
+         var minutes = today.getMinutes();
+         var seconds = today.getSeconds();
+         minutes = checkTime(minutes);
+         seconds = checkTime(seconds);
+         document.getElementById('clock').innerHTML =  day + "-" + month + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
+         setTimeout(startTime, 1000);
+      }
+
+      function checkTime(i) {
+        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+          return i;
+      }
+
+</script>
+
+<body onload="startTime()">
+<header>
+    <div id="nome">Sofia Adriano</div>
+    <nav>
+        <a href="{% url 'portfolio:home' %}">Home</a>
+
+        <div class="dropdown">
+            <button class="dropbtn">Sobre mim</button>
+            <div class="dropdown-content">
+                <a href="{% url 'portfolio:licenciatura' %}">Licenciatura</a>
+                <a href="{% url 'portfolio:educacao' %}">Educação</a>
+                <a href="{% url 'portfolio:certificados' %}">Certificados</a>
+                <a href="{% url 'portfolio:outrashabilitacoes' %}">Outras Habilitações</a>
+                <a href="{% url 'portfolio:aptidoesecompetencias' %}">Aptidões e Competências Pessoais</a>
+                <a href="{% url 'portfolio:interessesehobbies' %}">Interesses e Hobbies</a>
+            </div>
+        </div>
+
+        <div class="dropdownProjetos">
+            <button class="dropbtnProjetos">Projetos</button>
+            <div class="dropdown-contentProjetos">
+                <a href="{% url 'portfolio:projetos' %}">Realizados por mim</a>
+                <a href="{% url 'portfolio:tfcs' %}">TFCs Interessantes</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">Programação Web</button>
+            <div class="dropdown-content">
+                <a href="{% url 'portfolio:programacaowebtecnologias' %}">Tecnologias Existentes</a>
+                <a href="{% url 'portfolio:laboratorios' %}">Laboratórios</a>
+                <a href="{% url 'portfolio:noticias' %}">Notícias</a>
+                <a href="{% url 'portfolio:exemplosetecnicas' %}">Exemplos e Técnicas</a>
+                <a href="{% url 'portfolio:quizz' %}">Quizz</a>
+            </div>
+        </div>
+        <a href="{% url 'portfolio:blog' %}">Blog</a>
+        <a href="{% url 'portfolio:contactos' %}">Contactos</a>
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'portfolio:logout' %} " class="login">Logout</a>
+        {% else %}
+        <a href="{% url 'portfolio:login' %} " class="login">Login</a>
+        {% endif %}
+    </nav>
+</header>
+
+<main>
+    {% block main %}
+    {% load static %}
+    <img src="{% static 'portfolio/images/image.png' %}">
+    {% endblock main %}
+</main>
+
+<footer>
+    <div>
+        <p id="clock"></p>
+        <p id="temp"></p>
+    </div>
+    <div id="footernome">
+        Sofia Adriano, ULHT, 2022
+    </div>
+    <img src="{% static 'portfolio/images/lusofonalogo.jpg' %}">
+</footer>
+</html>

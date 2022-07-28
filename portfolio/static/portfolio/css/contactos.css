@@ -1,0 +1,46 @@
+main {
+  background-color: transparent;
+}
+
+footer {
+  color: white;
+}
+
+.contactos h1 {
+  font-size: 4em;
+  line-height: 1em;
+  align-items: center;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background-color: black;
+}
+
+.flexbox {
+  display: flex;
+  width: 100%;
+  height: 90vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.github img {
+  width: 70px;
+  height: 70px;
+}
+
+.imagem img {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -2;
+}
+
+footer{
+  margin-top: 63px;
+}

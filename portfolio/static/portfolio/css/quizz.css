@@ -1,0 +1,17 @@
+main div{
+  width: 620px;   height: 1080px;
+  padding: 25px;  margin: 10px;
+  margin-left: 60vh;
+  background-color: rgba(0, 108, 108, 0.55);
+  border-radius: 10px;                 /* arredonda os cantos */
+  box-shadow: 5px 5px 15px grey;
+}
+
+main{
+  height: 110vh;
+  background-image: url('../images/pexels-karolina-grabowska-4709467.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}

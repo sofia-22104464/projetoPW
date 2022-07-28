@@ -1,0 +1,14 @@
+#centro{
+    font-size: 45px;
+    padding-top: 30vh;
+    padding-left: 75vh;
+}
+
+main{
+  height: 90vh;
+  background-image: url('../images/pexels-tom-swinnen-2249961.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}

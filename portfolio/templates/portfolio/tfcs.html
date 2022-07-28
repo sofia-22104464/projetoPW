@@ -1,0 +1,64 @@
+<!-- tfcs.html -->
+
+{% extends 'portfolio/layout.html' %}
+
+{% block main %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'portfolio/css/tfcs.css' %}">
+    <script>
+    function showPage(page) {
+        document.querySelector('main').querySelectorAll('div').forEach(div => {
+            div.style.display = 'none';
+        })
+        document.querySelector(`#${page}`).style.display = 'block';
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('button').forEach(button => {
+            button.onclick = function() {
+                showPage(this.dataset.page);
+            }
+        });
+    });
+    </script>
+<h1>TFCs Interessantes</h1>
+<br>
+    {% for tfc in tfcs %}
+        <button class="button button1" data-page="page{{ forloop.counter }}">{{tfc.titulo}}</button>
+    {% endfor %}
+    {% for tfc in tfcs %}
+        <div id="page{{ forloop.counter }}">
+            <h2>{{tfc.titulo}} {{tfc.ano}}</h2>
+             <br>
+            <p><b>Autor(es): </b>{{tfc.autores}}</p>
+            <br>
+		    <p><b>Orientador(es): </b>{{tfc.orientadores}}</p>
+            <br>
+            <p>{{tfc.resumo}}</p>
+            <br>
+            <br>
+            {% if tfc.urlRelatorio != None %}
+                <p><b>Relatório: </b><a href="{{tfc.urlRelatorio}}">Transferir relatório.</a></p>
+            {% endif %}
+            <br>
+            {% if tfc.urlGitHub != None %}
+                <p><b>Link do GitHub: </b><a href="{{tfc.urlGitHub}}">{{tfc.urlGitHub}}</a></p>
+            {% endif %}
+            {% if tfc.urlYouTube != None %}
+                <br>
+                <p><b>Vídeo de Demonstração: </b><a href="{{tfc.urlYouTube}}">Assistir video.</a></p>
+            {% endif %}
+            {% if tfc.imagem.url != None %}
+                <img src="{{tfc.imagem.url}}" width="250" height="175">
+            {% endif %}
+            {% if request.user.is_authenticated %}
+                <br>
+                <button class="button button1"><a href="{% url 'portfolio:edita_tfc' tfc.id %}">Editar</a>
+                </button>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% if request.user.is_authenticated %}
+    <button class="button button2"><a href="{% url 'portfolio:novo_tfc' %}">Adicionar TFC</a></button>
+{% endif %}
+{% endblock %}
