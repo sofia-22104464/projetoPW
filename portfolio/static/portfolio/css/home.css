@@ -18,6 +18,15 @@ main {
   background-attachment: fixed;
 }
 
+#video{
+  padding-top: 220px;
+  padding-left: 70vh;
+}
+
+iframe{
+  margin-left: 70vh;
+}
+
 main > h2{
   display: flex;
   justify-content: center;
